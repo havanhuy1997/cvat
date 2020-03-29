@@ -5,8 +5,10 @@ server {
 }
 
 server {
-    listen       80;
+    listen       443 ssl;
     server_name  ${CVAT_HOST};
+    ssl_certificate /etc/nginx/taqadam.crt;
+    ssl_certificate_key /etc/nginx/taqadam.key;
 
     location ~* /api/.*|git/.*|tensorflow/.*|auto_annotation/.*|analytics/.*|static/.*|admin|admin/.*|documentation/.*|dextr/.*|reid/.*  {
         proxy_pass              http://cvat:8080;
